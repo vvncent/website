@@ -13,7 +13,7 @@ export default function LineNumbers() {
   }, [])
 
   return (
-    <div className="w-12 bg-bg1 text-fg text-center select-none leading-relaxed transition-colors duration-300 flex flex-col items-center pb-7">
+    <div className="w-12 bg-bg1 text-fg text-center select-none leading-relaxed transition-colors duration-300 flex flex-col items-center pb-14">
       {Array.from({length: 30}, (_, i) => {
         const lineElement = typeof window !== 'undefined' ? document.getElementById(`line-${i + 1}`) : null
         const lineY = lineElement?.getBoundingClientRect().top || 0

@@ -49,6 +49,8 @@ export default function NERDTree() {
     let newColorscheme = 'gruvbox'
     if (colorscheme === 'gruvbox') newColorscheme = 'dracula'
     else if (colorscheme === 'dracula') newColorscheme = 'nord'
+    else if (colorscheme === 'nord') newColorscheme = 'retrobox'
+    else if (colorscheme === 'retrobox') newColorscheme = 'solarized'
     else newColorscheme = 'gruvbox'
     
     setColorscheme(newColorscheme)
@@ -146,10 +148,12 @@ export default function NERDTree() {
                 <span className="text-fg/50 mr-1">├─</span>
                 colorscheme
               </button>
-              <div className={`ml-4 overflow-hidden transition-all duration-300 ${showColorscheme ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <button onClick={() => { setColorscheme('gruvbox'); localStorage.setItem('colorscheme', 'gruvbox'); document.documentElement.removeAttribute('data-colorscheme'); }} className={`block text-sm ${colorscheme === 'gruvbox' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>gruvbox</button>
+              <div className={`ml-4 overflow-hidden transition-all duration-300 ${showColorscheme ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
+                <button onClick={() => { setColorscheme('gruvbox'); localStorage.setItem('colorscheme', 'gruvbox'); document.documentElement.removeAttribute('data-colorscheme'); }} className={`block text-sm ${colorscheme === 'gruvbox' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>gruvbox ♥</button>
                 <button onClick={() => { setColorscheme('dracula'); localStorage.setItem('colorscheme', 'dracula'); document.documentElement.setAttribute('data-colorscheme', 'dracula'); }} className={`block text-sm ${colorscheme === 'dracula' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>dracula</button>
-                <button onClick={() => { setColorscheme('nord'); localStorage.setItem('colorscheme', 'nord'); document.documentElement.setAttribute('data-colorscheme', 'nord'); }} className={`block text-sm ${colorscheme === 'nord' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">└─ </span>nord</button>
+                <button onClick={() => { setColorscheme('nord'); localStorage.setItem('colorscheme', 'nord'); document.documentElement.setAttribute('data-colorscheme', 'nord'); }} className={`block text-sm ${colorscheme === 'nord' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>nord</button>
+                <button onClick={() => { setColorscheme('retrobox'); localStorage.setItem('colorscheme', 'retrobox'); document.documentElement.setAttribute('data-colorscheme', 'retrobox'); }} className={`block text-sm ${colorscheme === 'retrobox' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>retrobox</button>
+                <button onClick={() => { setColorscheme('solarized'); localStorage.setItem('colorscheme', 'solarized'); document.documentElement.setAttribute('data-colorscheme', 'solarized'); }} className={`block text-sm ${colorscheme === 'solarized' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">└─ </span>solarized</button>
               </div>
             </div>
             <div>

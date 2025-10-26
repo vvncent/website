@@ -7,7 +7,7 @@ export default function Home() {
   const [theme, setTheme] = useState('dark')
   const [showPopup, setShowPopup] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
-  const fullTextRef = useRef("Welcome to Vincent's Website!\n\nI graduated from Carnegie Mellon with a B.S. in Computer Science and Math (with university honors). I am currently a software engineer at Amazon Web Services, working on networking and automation in EC2 VPC.\n\nThis page is under construction.\n\nCheck back soon for updates!")
+  const fullTextRef = useRef("Welcome to Vincent's Website!\n\nI graduated from Carnegie Mellon with a B.S. in computer science and math (with university honors). I am currently a software engineer at Amazon Web Services working on networking and automation in EC2 VPC.\n\nThis page is under construction.\n\nCheck back soon for updates!")
   const { setIsTyping } = useMode()
 
   useEffect(() => {
@@ -104,12 +104,12 @@ export default function Home() {
         </div>
       )}
       <div className="flex flex-col items-center">
-      <div className="flex gap-4 mb-6 w-full">
+      <div className="flex gap-4 mb-6 w-full animate-slide-up">
         <div className="border-2 border-dashed border-bg2 p-4 flex items-center justify-center">
           <img src="/images/profile.png" alt="Profile" className="w-40 h-40 rounded-full" />
         </div>
         <div className="border-2 border-dashed border-bg2 p-4 flex-1 flex flex-col items-center justify-center gap-3">
-          {lines[0] && <h1 className="text-fg0 text-2xl transition-colors duration-300">{lines[0]}{!lines[2] && showCursor && <span className="bg-fg inline-block w-2 h-6 ml-1 animate-pulse"></span>}</h1>}
+          {lines[0] && <h1 className="text-fg0 text-2xl transition-colors duration-300">{lines[0]}{!lines[2] && showCursor && <span className="bg-fg inline-block w-2 h-6 ml-1 animate-pulse align-text-bottom"></span>}</h1>}
           <div className="flex gap-4 items-center">
             <a href="https://www.linkedin.com/in/vvncent/" target="_blank" rel="noopener noreferrer">
               <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" alt="LinkedIn" className="h-8" />
@@ -133,11 +133,15 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="border-2 border-dashed border-bg2 p-4 mb-6 w-full">
-        {lines[2] && <p className="text-fg transition-colors duration-300">{lines[2]}{!lines[4] && showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
+      <div className="border-2 border-dashed border-bg2 p-4 mb-6 w-full animate-slide-up animate-delay-1">
+        {lines[2] && <p className="text-fg transition-colors duration-300">{lines[2]}{!lines[4] && showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse align-text-bottom"></span>}</p>}
       </div>
-      {lines[4] && <p className="text-fg mb-4 transition-colors duration-300">{lines[4]}{!lines[6] && showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
-      {lines[6] && <p className="text-fg mb-4 transition-colors duration-300">{lines[6]}{showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
+      <div className="animate-slide-up animate-delay-2">
+        {lines[4] && <p className="text-fg mb-4 transition-colors duration-300">{lines[4]}{!lines[6] && showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse align-text-bottom"></span>}</p>}
+      </div>
+      <div className="animate-slide-up animate-delay-3">
+        {lines[6] && <p className="text-fg mb-4 transition-colors duration-300">{lines[6]}{showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse align-text-bottom"></span>}</p>}
+      </div>
       </div>
     </>
   )
