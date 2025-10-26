@@ -1,10 +1,10 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import { useMode } from './ModeContext'
+import { useMode } from '../ModeContext'
 
-export default function Home() {
+export default function Math() {
   const [text, setText] = useState('')
-  const fullTextRef = useRef("Vincent's Website\n\nWelcome to my personal website!\n\nThis page is under construction.\n\nCheck back soon for updates!")
+  const fullTextRef = useRef("Math\n\nMy mathematical projects and interests.")
   const { setIsTyping } = useMode()
 
   useEffect(() => {
@@ -34,9 +34,7 @@ export default function Home() {
   return (
     <div>
       {lines[0] && <h1 className="text-fg0 mb-6 text-xl transition-colors duration-300">{lines[0]}{!lines[2] && showCursor && <span className="bg-fg inline-block w-2 h-5 ml-1 animate-pulse"></span>}</h1>}
-      {lines[2] && <p className="text-fg mb-4 transition-colors duration-300">{lines[2]}{!lines[4] && showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
-      {lines[4] && <p className="text-fg mb-4 transition-colors duration-300">{lines[4]}{!lines[6] && showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
-      {lines[6] && <p className="text-fg mb-4 transition-colors duration-300">{lines[6]}{showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
+      {lines[2] && <p className="text-fg mb-4 transition-colors duration-300">{lines[2]}{showCursor && <span className="bg-fg inline-block w-2 h-4 ml-1 animate-pulse"></span>}</p>}
     </div>
   )
 }
