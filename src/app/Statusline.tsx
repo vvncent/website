@@ -38,7 +38,7 @@ export default function Statusline() {
 
   if (!mounted) {
     return (
-      <div className="bg-bg0 flex justify-between text-sm transition-all duration-300">
+      <div className="bg-bg0 flex justify-between text-sm transition-all duration-300 fixed bottom-0 left-0 right-0 z-50">
         <div className="flex items-stretch">
           <span className="bg-green text-bg px-3 py-1 flex items-center font-bold relative z-10">
             NORMAL
@@ -68,7 +68,7 @@ export default function Statusline() {
   }
 
   return (
-    <div className="bg-bg0 flex justify-between text-sm transition-all duration-300">
+    <div className="bg-bg0 flex justify-between text-sm transition-all duration-300 fixed bottom-0 left-0 right-0 z-50">
       <div className="flex items-stretch">
         <span className={`${isTyping ? 'bg-blue' : 'bg-green'} text-bg px-3 py-1 flex items-center font-bold relative z-10`}>
           {isTyping ? 'INSERT' : 'NORMAL'}

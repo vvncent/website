@@ -12,8 +12,6 @@ export default function NERDTree() {
   const [showColorscheme, setShowColorscheme] = useState(false)
   const [showFont, setShowFont] = useState(false)
   const [showFontSize, setShowFontSize] = useState(false)
-  const [showFontFamily, setShowFontFamily] = useState(false)
-  const [fontFamily, setFontFamily] = useState('cozette')
   const [showPages, setShowPages] = useState(true)
   const [showHelp, setShowHelp] = useState(false)
   const [fontSize, setFontSize] = useState(16)
@@ -22,14 +20,11 @@ export default function NERDTree() {
     const savedTheme = localStorage.getItem('theme') || 'dark'
     const savedColorscheme = localStorage.getItem('colorscheme') || 'gruvbox'
     const savedFontSize = localStorage.getItem('fontSize') || '16'
-    const savedFontFamily = localStorage.getItem('fontFamily') || 'cozette'
     setTheme(savedTheme)
     setColorscheme(savedColorscheme)
     setFontSize(parseInt(savedFontSize))
-    setFontFamily(savedFontFamily)
     document.documentElement.setAttribute('data-theme', savedTheme)
     document.documentElement.style.fontSize = `${savedFontSize}px`
-    document.body.style.fontFamily = savedFontFamily === 'cozette' ? "'Cozette', monospace" : "'JetBrains Mono', monospace"
     if (savedColorscheme !== 'gruvbox') {
       document.documentElement.setAttribute('data-colorscheme', savedColorscheme)
     }
@@ -74,8 +69,8 @@ export default function NERDTree() {
   }
 
   return (
-    <div className={`w-64 bg-bg flex flex-col h-screen sticky top-0 transition-colors duration-300 ${fontFamily === 'jetbrains' ? 'border-r-2 border-solid border-bg2' : 'border-r-2 border-dashed border-bg2'}`}>
-      <div className={`p-4 ${fontFamily === 'jetbrains' ? 'border-b-2 border-solid border-bg2' : 'border-b-2 border-dashed border-bg2'}`}>
+    <div className="w-64 bg-bg border-r-2 border-dashed border-bg2 flex flex-col h-screen sticky top-0 transition-colors duration-300">
+      <div className="p-4 border-b-2 border-dashed border-bg2">
         <div className="flex items-center justify-between mb-2">
           <div className="text-fg font-bold">vvncent.com</div>
           <button onClick={toggleTheme} className="relative w-6 h-6 cursor-pointer overflow-hidden transition-all duration-300 hover:scale-110">
@@ -93,7 +88,7 @@ export default function NERDTree() {
       <div className="flex-1 p-4 text-sm overflow-y-auto">
         {showHelp ? (
           <div className="text-fg space-y-2">
-            <div className="text-yellow font-bold mb-3">NERDTree Help</div>
+            <div className="text-yellow font-bold mb-3">Help</div>
             <div className="text-xs space-y-1">
               <div><span className="text-aqua">Navigation:</span></div>
               <div className="ml-2">• Click folders to expand/collapse</div>
@@ -158,33 +153,15 @@ export default function NERDTree() {
               </div>
             </div>
             <div>
-              <button onClick={() => setShowFont(!showFont)} className="text-fg cursor-pointer hover:text-yellow transition-colors flex items-center text-sm">
-                <span className="text-fg/50 mr-1">{showFont ? '▾' : '▸'}</span>
+              <button onClick={() => setShowFontSize(!showFontSize)} className="text-fg cursor-pointer hover:text-yellow transition-colors flex items-center text-sm">
+                <span className="text-fg/50 mr-1">{showFontSize ? '▾' : '▸'}</span>
                 <span className="text-fg/50 mr-1">└─</span>
-                font
+                font size
               </button>
-              <div className={`ml-4 space-y-2 overflow-hidden transition-all duration-300 ${showFont ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div>
-                  <button onClick={() => setShowFontFamily(!showFontFamily)} className="text-fg cursor-pointer hover:text-yellow transition-colors flex items-center text-sm">
-                    <span className="text-fg/50 mr-1">{showFontFamily ? '▾' : '▸'}</span>
-                    family
-                  </button>
-                  <div className={`ml-4 overflow-hidden transition-all duration-300 ${showFontFamily ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <button onClick={() => { setFontFamily('cozette'); localStorage.setItem('fontFamily', 'cozette'); document.body.style.fontFamily = "'Cozette', monospace"; }} className={`block text-sm ${fontFamily === 'cozette' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>cozette</button>
-                    <button onClick={() => { setFontFamily('jetbrains'); localStorage.setItem('fontFamily', 'jetbrains'); document.body.style.fontFamily = "'JetBrains Mono', monospace"; }} className={`block text-sm ${fontFamily === 'jetbrains' ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">└─ </span>jetbrains mono</button>
-                  </div>
-                </div>
-                <div>
-                  <button onClick={() => setShowFontSize(!showFontSize)} className="text-fg cursor-pointer hover:text-yellow transition-colors flex items-center text-sm">
-                    <span className="text-fg/50 mr-1">{showFontSize ? '▾' : '▸'}</span>
-                    size
-                  </button>
-                  <div className={`ml-4 overflow-hidden transition-all duration-300 ${showFontSize ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <button onClick={() => { setFontSize(16); localStorage.setItem('fontSize', '16'); document.documentElement.style.fontSize = '16px'; }} className={`block text-sm ${fontSize === 16 ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>small (16px)</button>
-                    <button onClick={() => { setFontSize(17); localStorage.setItem('fontSize', '17'); document.documentElement.style.fontSize = '17px'; }} className={`block text-sm ${fontSize === 17 ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>medium (17px)</button>
-                    <button onClick={() => { setFontSize(18); localStorage.setItem('fontSize', '18'); document.documentElement.style.fontSize = '18px'; }} className={`block text-sm ${fontSize === 18 ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">└─ </span>large (18px)</button>
-                  </div>
-                </div>
+              <div className={`ml-4 overflow-hidden transition-all duration-300 ${showFontSize ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+                <button onClick={() => { setFontSize(16); localStorage.setItem('fontSize', '16'); document.documentElement.style.fontSize = '16px'; }} className={`block text-sm ${fontSize === 16 ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>small (16px)</button>
+                <button onClick={() => { setFontSize(17); localStorage.setItem('fontSize', '17'); document.documentElement.style.fontSize = '17px'; }} className={`block text-sm ${fontSize === 17 ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">├─ </span>medium (17px)</button>
+                <button onClick={() => { setFontSize(18); localStorage.setItem('fontSize', '18'); document.documentElement.style.fontSize = '18px'; }} className={`block text-sm ${fontSize === 18 ? 'text-yellow' : 'text-fg hover:text-yellow'} transition-colors`}><span className="text-fg/50">└─ </span>large (18px)</button>
               </div>
             </div>
           </div>

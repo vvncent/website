@@ -13,8 +13,8 @@ export default function LineNumbers() {
   }, [])
 
   return (
-    <div className="text-fg pr-4 py-12 text-right select-none leading-relaxed absolute left-4 overflow-hidden">
-      {Array.from({length: 20}, (_, i) => {
+    <div className="w-12 bg-bg1 text-fg text-center select-none leading-relaxed transition-colors duration-300 flex flex-col items-center pb-7">
+      {Array.from({length: 30}, (_, i) => {
         const lineElement = typeof window !== 'undefined' ? document.getElementById(`line-${i + 1}`) : null
         const lineY = lineElement?.getBoundingClientRect().top || 0
         const distance = Math.abs(mouseY - lineY)
@@ -26,7 +26,7 @@ export default function LineNumbers() {
             id={`line-${i + 1}`} 
             style={{ opacity }}
           >
-            {i + 1}
+            {i < 20 ? i + 1 : '~'}
           </div>
         )
       })}

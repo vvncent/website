@@ -1,35 +1,19 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
 import { useMode } from '../ModeContext'
+import { useTypewriter } from '../useTypewriter'
 
 export default function Math() {
-  const [text, setText] = useState('')
-  const fullTextRef = useRef("Math\n\nMy mathematical projects and interests.")
   const { setIsTyping } = useMode()
-
-  useEffect(() => {
-    let index = 0
-    const fullText = fullTextRef.current
-    setIsTyping(true)
-    
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        setText(fullText.slice(0, index + 1))
-        index++
-      } else {
-        setIsTyping(false)
-        clearInterval(interval)
-      }
-    }, 15)
-    return () => {
-      clearInterval(interval)
-      setIsTyping(false)
-    }
-  }, [setIsTyping])
-
+  const text = useTypewriter(
+    "Math\n\nMy mathematical projects and interests.",
+    "interests.",
+    "intrests.",
+    setIsTyping
+  )
+  const fullText = "Math\n\nMy mathematical projects and interests."
   const lines = text.split('\n')
 
-  const showCursor = text.length < fullTextRef.current.length
+  const showCursor = text.length < fullText.length
 
   return (
     <div>

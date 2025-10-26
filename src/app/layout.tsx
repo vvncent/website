@@ -17,10 +17,10 @@ export default function RootLayout({
       <body className="bg-bg text-fg flex min-h-screen transition-colors duration-300">
         <ModeProvider>
           <NERDTree />
+          <LineNumbers />
           <div className="flex-1 flex flex-col">
-            <main className="flex-1 w-full animate-fade-in flex max-w-4xl mx-auto relative">
-              <LineNumbers />
-              <div className="py-12 pl-16 flex-1">{children}</div>
+            <main className="flex-1 w-full animate-fade-in max-w-4xl mx-auto">
+              <div className="py-12 px-12">{children}</div>
             </main>
             <Statusline />
           </div>
