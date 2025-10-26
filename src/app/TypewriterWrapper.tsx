@@ -12,8 +12,11 @@ export default function TypewriterWrapper({ children }: { children: ReactNode })
       if (typeof node === 'string') return node
       if (typeof node === 'number') return String(node)
       if (Array.isArray(node)) return node.map(extractText).join('')
-      if (isValidElement(node) && node.props.children) {
-        return extractText(node.props.children)
+      if (isValidElement(node)) {
+        const props = node.props as { children?: ReactNode }
+        if (props.children) {
+          return extractText(props.children)
+        }
       }
       return ''
     }
